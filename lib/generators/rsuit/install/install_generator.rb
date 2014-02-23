@@ -21,8 +21,18 @@ module Rsuit
       end
 
       def init_rsuit
+        Bundler.with_clean_env do
+          run "bundle install"
+        end
         generate("rspec:install")
-
+        #%x[cd #{Rails.root} && #{bundle exec guard init rspec}]
+        #%x[cd #{Rails.root} && #{bundle exec guard init spork}]
+        #%x[cd #{Rails.root} && #{bundle exec spork --bootstrap}]
+        Bundler.with_clean_env do
+          run "bundle exec guard init rspec"
+          run "bundle exec guard init spork"
+          run "bundle spork --bootstrap"
+        end
       end
 
       def copy_config_file
