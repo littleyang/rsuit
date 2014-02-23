@@ -21,7 +21,7 @@ module Rsuit
       end
 
       def read_config
-        File.readlines("Gemfile_temp").each do |line|
+        File.readlines("./templates/Gemfiletemp").each do |line|
           puts line
         end
       end
