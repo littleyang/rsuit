@@ -21,17 +21,11 @@ module Rsuit
       end
 
       def read_config
-        File.readlines("./templates/Gemfiletemp").each do |line|
+        File.readlines("Gemfiletemp").each do |line|
           puts line
         end
       end
 
-      def init_rspec
-        #if(File.exist?)
-        #%x[#{rails g rspec:install}]
-        #%x[#{bundle exec guard init rspec}]
-        #%x[#{bundle exec guard init spork}]
-        #%x[#{bundle exec spork --bootstrap}]
       end
 
       def copy_config_file
@@ -47,9 +41,9 @@ module Rsuit
       def init_gemfile_config
         begin
           gem_config_file = File.open("#{Rails.root}/Gemfile","a")
-          File.readlines("Gemfile").each do |line|
-            gem_config_file.puts line
-          end
+          #File.readlines("Gemfile").each do |line|
+          #  gem_config_file.puts line
+          #end
           gem_config_file.close
         rescue Exception => e
           puts e.message
