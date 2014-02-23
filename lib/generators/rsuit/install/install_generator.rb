@@ -16,15 +16,12 @@ module Rsuit
       end
 
       def init_config
-        init_application_config
         init_gemfile_config
+        init_application_config
       end
 
-      def read_config
-        File.readlines("Gemfiletemp").each do |line|
-          puts line
-        end
-      end
+      def init_rsuit
+        generate("rspec:install")
 
       end
 
@@ -36,15 +33,38 @@ module Rsuit
       private
       def init_application_config
 
+        application "
+        config.generators do |g|
+          g.test_framework :rspec,
+            :fixtures => true,
+            :view_specs => true,
+            :helper_specs => true,
+            :routing_specs => true,
+            :controller_specs => true,
+            :request_specs => true
+          g.fixture_replacement :factory_girl,:dir=>'spec/factories'
+        end
+        "
       end
 
       def init_gemfile_config
         begin
-          gem_config_file = File.open("#{Rails.root}/Gemfile","a")
-          #File.readlines("Gemfile").each do |line|
-          #  gem_config_file.puts line
-          #end
-          gem_config_file.close
+          gem_group :development,:test do
+            gem 'rspec-rails'
+            gem 'rspec'
+            gem 'rb-inotify',:require => false
+            gem 'rb-fsevent',:require => false
+            gem 'rb-fchange',:require => false
+            gem 'guard-rspec'
+            gem 'factory_girl_rails'
+            gem 'watchr'
+            gem 'launchy'
+            gem 'capybara'
+            gem 'faker'
+            gem 'guard-spork'
+            gem 'spork','~> 1.0rc'
+            gem 'spork-rails',github: 'railstutorial/spork-rails'
+          end
         rescue Exception => e
           puts e.message
         end
