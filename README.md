@@ -3,7 +3,7 @@
 TODO: Write a gem description
 
 ## Installation
-
+l
 Add this line to your application's Gemfile:
 
     gem 'rsuit'
@@ -19,6 +19,21 @@ Or install it yourself as:
 ## Usage
 
 TODO: Write usage instructions here
+
+Just only run follow command:
+
+```
+  rails g rsuit:install
+
+```
+
+and then run
+
+```
+  bundle exec guard
+```
+
+then this suit will init all dependency gem and run the test suit!
 
 ## Contributing
 
