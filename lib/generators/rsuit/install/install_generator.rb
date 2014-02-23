@@ -7,8 +7,8 @@ module Rsuit
       desc "create rspec install and init the guard file,spec_help file"
 
       def init_dir
-        if(!File.exist?("#{Rails.root/spec/factories}"))
-          Dir.mkdir("#{Rails.root/spec/factories}")
+        if(!File.exist?("#{Rails.root}/spec/factories"))
+          Dir.mkdir("#{Rails.root}/spec/factories")
         end
       end
 
@@ -33,16 +33,16 @@ module Rsuit
         copy_file "spec_helper.rb","#{Rails.root}/spec/spec_helper.rb"
       end
 
-      private
       def init_application_config
 
       end
 
       def init_gemfile_config
         begin
-          gem_config_file = File.open("#{Rails.root/Gemfile}","a")
-          File.readlines(Gemfile) do |line|
+          gem_config_file = File.open("#{Rails.root}/Gemfile}","a")
+          File.readlines("Gemfile") do |line|
             gem_config_file.puts line
+            puts line
           end
           gem_config_file.close
         rescue Exception => e
